@@ -13,7 +13,7 @@ import Empty from "../../ui/Empty";
 import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "./useBooking";
 import { useNavigate } from "react-router-dom";
-import { HiArrowUpOnSquare, HiTrash } from "react-icons/hi2";
+import { HiArrowUpOnSquare } from "react-icons/hi2";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Modal from "../../ui/Modal";
 import { useDeleteBooking } from "./useDeleteBooking";

@@ -20,5 +20,5 @@
 // }
 
 {
-  "extends": ""
+  "extends": "react-app"
 }
