@@ -3,20 +3,20 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 
 function LoginForm() {
-  const [email, setEmail] = useState("sohaib@test.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("demo@wanderlust.com");
+  const [password, setPassword] = useState("password123@testing");
   const { login, isLoading } = useLogin();
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) {
-      toast.error("Invalid email or password");
-    }
+    // if (!email || !password) {
+    //   toast.error("Invalid email or password");
+    // }
     login(
       { email, password },
       {

@@ -5,14 +5,23 @@ import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 
 import { useUpdateUser } from "./useUpdateUser";
+import { useUser } from "./useUser";
+import toast from "react-hot-toast";
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
   const { errors } = formState;
+  const {
+    user: { email },
+  } = useUser();
 
   const { updateUser, isUpdating } = useUpdateUser();
 
   function onSubmit({ password }) {
+    if (email === "demo@wanderlust.com") {
+      toast.error("Not allowed to change password for this account");
+      return;
+    }
     updateUser({ password }, { onSuccess: () => reset() });
   }
 

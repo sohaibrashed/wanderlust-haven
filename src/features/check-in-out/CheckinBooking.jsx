@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 import { formatCurrency } from "../../utils/helpers";
 import { useCheckin } from "./useCheckin";
 import { useSettings } from "../settings/useSettings";
-import { useCheckout } from "./useCheckout";
 
 const Box = styled.div`
   /* Box */
@@ -35,7 +34,6 @@ function CheckinBooking() {
 
   const moveBack = useMoveBack();
   const { checkin, isCheckingIn } = useCheckin();
-  const { checkout, isCheckingOut } = useCheckout();
 
   if (isLoading || isLoadingSettings) return <Spinner />;
 
