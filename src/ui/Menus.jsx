@@ -70,6 +70,7 @@ const MenusContext = createContext();
 function Menus({ children }) {
   const [openId, setOpenId] = useState("");
   const [position, setPosition] = useState(null);
+
   const close = () => setOpenId("");
   const open = setOpenId;
 
@@ -85,19 +86,17 @@ function Menus({ children }) {
 function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext);
 
-  const handleClick = (e) => {
+  function handleClick(e) {
     e.stopPropagation();
+
     const rect = e.target.closest("button").getBoundingClientRect();
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
     });
-    if (openId === "" || openId !== id) {
-      open(id);
-    } else {
-      close();
-    }
-  };
+
+    openId === "" || openId !== id ? open(id) : close();
+  }
 
   return (
     <StyledToggle onClick={handleClick}>
@@ -108,19 +107,19 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
-  const { ref } = useOutsideClick(close, false);
+  const ref = useOutsideClick(close, false);
 
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList ref={ref} position={position}>
+    <StyledList position={position} ref={ref}>
       {children}
     </StyledList>,
     document.body
   );
 }
 
-function Button({ children, icon, onClick, disabled = false }) {
+function Button({ children, icon, onClick }) {
   const { close } = useContext(MenusContext);
 
   function handleClick() {
@@ -130,7 +129,7 @@ function Button({ children, icon, onClick, disabled = false }) {
 
   return (
     <li>
-      <StyledButton disabled={disabled} onClick={handleClick}>
+      <StyledButton onClick={handleClick}>
         {icon}
         <span>{children}</span>
       </StyledButton>
